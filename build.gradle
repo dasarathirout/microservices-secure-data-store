@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://maven.springframework.org/release"
+        }
+    }
+}
+
+plugins {
+    id 'java'
+}
+
+subprojects {
+
+    group = 'org.dasarathi.sds'
+    version = 'v-20211011-SNAPSHOT'
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+
+    repositories {
+        mavenCentral()
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+
+}
