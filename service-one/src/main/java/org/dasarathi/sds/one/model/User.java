@@ -60,4 +60,14 @@ public class User {
         this.currentAge = currentAge;
     }
 
+    @Override
+    public String toString() {
+        return "\nUser {" + "\n" +
+                "    ID     : " + id + "\n" +
+                "    NAME   : " + name + "\n" +
+                "    DOB    : " + dateOfBirth + "\n" +
+                "    SALARY : " + salary + "\n" +
+                "    AGE    : " + currentAge + "\n" +
+                "}\n";
+    }
 }
