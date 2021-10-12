@@ -1,2 +1,1 @@
-rootProject.name = 'microservices-secure-data-store'
-include(':service-core', ':service-one', ':servic-two')
+rootProject.name = 'sds-service-one'
