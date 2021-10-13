@@ -20,7 +20,6 @@ public class ServiceOneController {
     @Autowired
     IUserService userService;
 
-    /* For Dev Test Only*/
     @GetMapping("/users")
     private List<User> getAllUser() {
         List<User> allUsers = null;
@@ -72,6 +71,7 @@ public class ServiceOneController {
         return user;
     }
 
+    /* For Dev Test Only*/
     @DeleteMapping("/user/{userID}")
     private void deleteUser(@PathVariable("userID") int userID) {
         LOG.info("deleteUser()" + userID);

@@ -81,8 +81,22 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User delete(int user) {
-        return null;
+    public User delete(int userID) {
+        User result = null;
+        try {
+            LOG.info("Deleting User " + userID);
+            result = MockUsers.lists().
+                    stream().
+                    filter(item -> item.getId() == userID).
+                    collect(Collectors.toList()).
+                    remove(userID);
+        } catch (Exception ex) {
+            LOG.severe("Error During Delete User : " + ex.getMessage());
+            throw new RuntimeException("Error During Update User :" + userID);
+        } finally {
+
+        }
+        return result;
     }
 
 }
