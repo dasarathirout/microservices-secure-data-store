@@ -4,8 +4,9 @@ import org.dasarathi.sds.one.controller.helper.OneHelper;
 import org.dasarathi.sds.one.model.User;
 import org.dasarathi.sds.one.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,16 +20,31 @@ public class ServiceOneController {
     @Autowired
     IUserService userService;
 
+    /* For Dev Test Only*/
     @GetMapping("/users")
     private List<User> getAllUser() {
-        LOG.info("getAllUser()");
-        return userService.getAll();
+        List<User> allUsers = null;
+        try {
+            LOG.info("getAllUser()");
+            allUsers = userService.getAll();
+        } catch (Exception ex) {
+            LOG.severe("getAllUser() failed with " + ex.getMessage());
+            throw new HttpMessageNotReadableException("Unable to fetch all user.");
+        }
+        return allUsers;
     }
 
     @GetMapping("/user/{userID}")
     private User getUser(@PathVariable("userID") int userID) {
-        LOG.info("getUser()");
-        return userService.search(userID);
+        User findUser;
+        try {
+            LOG.info("getUser()");
+            findUser = userService.search(userID);
+        } catch (Exception ex) {
+            LOG.severe("getAllUser() failed with " + ex.getMessage());
+            throw new HttpMessageNotReadableException("Unable to fetch user :" + userID);
+        }
+        return findUser;
     }
 
     @PostMapping(value = "/user",
@@ -36,9 +52,10 @@ public class ServiceOneController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     private User saveUser(@RequestHeader(name = "fileType", required = false) String fileTypeByHeader,
                           @RequestParam(name = "fileType", required = false) String fileTypeByParameter,
-                          @RequestBody User user) {
+                          @RequestBody User user) throws MissingServletRequestParameterException {
+
         LOG.info("saveUser()" + user);
-        boolean hasValidFileType = OneHelper.checkFileTypeInRequest(fileTypeByHeader, fileTypeByParameter);
+        OneHelper.checkFileTypeInRequest(fileTypeByHeader, fileTypeByParameter);
         userService.save(user);
         return userService.search(user.getId());
     }
@@ -46,8 +63,11 @@ public class ServiceOneController {
     @PutMapping(value = "/user",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    private User updateUser(@RequestBody User user) {
-        LOG.info("updateUser()" + user);
+    private User updateUser(@RequestHeader(name = "fileType", required = false) String fileTypeByHeader,
+                            @RequestParam(name = "fileType", required = false) String fileTypeByParameter,
+                            @RequestBody User user) throws MissingServletRequestParameterException {
+        LOG.info("updateUser()");
+        OneHelper.checkFileTypeInRequest(fileTypeByHeader, fileTypeByParameter);
         userService.edit(user);
         return user;
     }

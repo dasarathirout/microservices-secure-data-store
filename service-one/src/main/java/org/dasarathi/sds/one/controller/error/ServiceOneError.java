@@ -1,4 +1,4 @@
-package org.dasarathi.sds.one.controller.helper;
+package org.dasarathi.sds.one.controller.error;
 
 import org.springframework.http.HttpStatus;
 
@@ -26,5 +26,29 @@ public class ServiceOneError {
         this.httpStatus = status;
         this.errorMessage = message;
         errorList = Arrays.asList(error);
+    }
+
+    public HttpStatus getHttpStatus() {
+        return httpStatus;
+    }
+
+    public void setHttpStatus(HttpStatus httpStatus) {
+        this.httpStatus = httpStatus;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
+    public List<String> getErrorList() {
+        return errorList;
+    }
+
+    public void setErrorList(List<String> errorList) {
+        this.errorList = errorList;
     }
 }

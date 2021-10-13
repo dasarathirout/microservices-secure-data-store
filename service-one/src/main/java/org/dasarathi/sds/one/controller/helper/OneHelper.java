@@ -1,8 +1,6 @@
 package org.dasarathi.sds.one.controller.helper;
 
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpRequest;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 
 import java.util.logging.Logger;
 
@@ -12,15 +10,13 @@ public class OneHelper {
     private OneHelper() {
     }
 
-    public static boolean checkFileTypeInRequest(String fileTypeInHeader,
-                                                 String fileTypeInParameter) {
+    public static void checkFileTypeInRequest(String fileTypeInHeader,
+                                              String fileTypeInParameter) throws MissingServletRequestParameterException {
         LOG.info("checkFileTypeInRequest( " + fileTypeInHeader + " , " + fileTypeInParameter + " )");
-        boolean isPresent = false;
-        if (isFileType(fileTypeInHeader) ||
-                isFileType(fileTypeInParameter)) {
-            isPresent = true;
+        boolean hasValidFileType = isFileType(fileTypeInHeader) || isFileType(fileTypeInParameter);
+        if (!hasValidFileType) {
+            throw new MissingServletRequestParameterException("fileType", "CSV / XML");
         }
-        return isPresent;
     }
 
     private static boolean isFileType(String value) {

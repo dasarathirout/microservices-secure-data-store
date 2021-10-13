@@ -12,7 +12,7 @@ public interface IUserService {
 
     public abstract User save(User user);
 
-    public abstract String delete(int userID);
+    public abstract User delete(int userID);
 
-    public abstract String edit(User user);
+    public abstract User edit(User user);
 }
