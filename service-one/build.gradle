@@ -1,7 +1,9 @@
 plugins {
+    id 'idea'
+    id 'java'
+    id 'application'
     id 'org.springframework.boot' version '2.5.5'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id 'java'
 }
 
 group = 'org.dasarathi.sds.one'

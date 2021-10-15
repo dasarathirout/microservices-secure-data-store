@@ -8,7 +8,9 @@ buildscript {
 }
 
 plugins {
+    id 'idea'
     id 'java'
+    id 'application'
 }
 
 subprojects {
@@ -19,6 +21,8 @@ subprojects {
     targetCompatibility = JavaVersion.VERSION_1_8
 
     apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'application'
     apply plugin: 'java-library'
 
     repositories {
@@ -28,6 +32,5 @@ subprojects {
     test {
         useJUnitPlatform()
     }
-
 
 }

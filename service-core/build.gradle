@@ -1,13 +1,33 @@
-
 plugins {
+    id 'idea'
+    id 'java'
+    id 'application'
     id 'org.springframework.boot' version '2.5.5'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id 'java'
+    id 'com.google.protobuf' version '0.8.17'
+
 }
 
 group = 'org.dasarathi.sds.core'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.17.3"
+    }
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.41.0'
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
+}
+
 
 repositories {
     mavenCentral()
@@ -17,9 +37,23 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.data:spring-data-rest-hal-explorer'
     implementation 'org.springframework.boot:spring-boot-devtools'
+    implementation 'com.google.protobuf:protobuf-java:3.18.0'
+    implementation 'io.grpc:grpc-netty-shaded:1.41.0'
+    implementation 'io.grpc:grpc-protobuf:1.41.0'
+    implementation 'io.grpc:grpc-stub:1.41.0'
+    compileOnly 'org.apache.tomcat:annotations-api:6.0.53' // necessary for Java 9+
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 test {
     useJUnitPlatform()
+}
+
+// Import Generated Class
+sourceSets.main.java.srcDir new File(buildDir, 'generated/source')
+idea {
+    module {
+        generatedSourceDirs += file('build/generated/source')
+    }
 }
