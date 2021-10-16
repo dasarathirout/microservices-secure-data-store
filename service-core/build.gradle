@@ -5,12 +5,15 @@ plugins {
     id 'org.springframework.boot' version '2.5.5'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'com.google.protobuf' version '0.8.17'
-
 }
 
 group = 'org.dasarathi.sds.core'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+
+application {
+    mainClass = 'org.dasarathi.sds.core.ServiceCore'
+}
 
 protobuf {
     protoc {

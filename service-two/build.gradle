@@ -1,4 +1,3 @@
-
 plugins {
     id 'org.springframework.boot' version '2.5.5'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -9,11 +8,16 @@ group = 'org.dasarathi.sds.two'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+application {
+    mainClass = 'org.dasarathi.sds.two.ServiceTwo'
+}
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    implementation project(':service-core')
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.data:spring-data-rest-hal-explorer'
     implementation 'org.springframework.boot:spring-boot-devtools'

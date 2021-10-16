@@ -19,7 +19,7 @@ public class KeyPairRSA {
     private static final String PUBLIC_KEY_FILE = "KeyPairs" + File.separator + "sds-public.key";
     private static final String PRIVATE_KEY_FILE = "KeyPairs" + File.separator + "sds-private.key";
 
-    private static void generatePublicPrivateKeys() {
+    public static void generatePublicPrivateKeys() {
         try {
             SecureRandom secureRandom = new SecureRandom();
             KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");

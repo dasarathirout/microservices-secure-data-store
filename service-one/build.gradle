@@ -10,11 +10,17 @@ group = 'org.dasarathi.sds.one'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+application {
+    mainClass = 'org.dasarathi.sds.one.ServiceOne'
+}
+
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    implementation project(':service-core')
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.data:spring-data-rest-hal-explorer'
     implementation 'org.springframework.boot:spring-boot-devtools'
