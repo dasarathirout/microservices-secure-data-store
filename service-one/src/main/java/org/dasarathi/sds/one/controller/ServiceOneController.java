@@ -2,7 +2,7 @@ package org.dasarathi.sds.one.controller;
 
 import org.dasarathi.sds.one.controller.error.HttpUserMessage;
 import org.dasarathi.sds.one.controller.helper.OneHelper;
-import org.dasarathi.sds.one.model.User;
+import org.dasarathi.sds.core.model.User;
 import org.dasarathi.sds.one.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 @RestController
 @RequestMapping("/serviceOne/api/v1")
 public class ServiceOneController {
-    Logger LOG = Logger.getLogger(ServiceOneController.class.getName());
+    private static final Logger LOG = Logger.getLogger(ServiceOneController.class.getName());
 
     @Autowired
     IUserService userService;

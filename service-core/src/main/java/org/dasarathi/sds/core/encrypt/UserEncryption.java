@@ -25,6 +25,7 @@ public final class UserEncryption {
         try {
             ObjectMapper jsonMapper = new ObjectMapper();
             String jsonUserString = jsonMapper.writerWithDefaultPrettyPrinter().writeValueAsString(inUser);
+            LOG.info(jsonUserString);
             return jsonUserString;
         } catch (Exception ex) {
             LOG.severe("User JSON Encryption Failed : " + ex.getMessage());
@@ -43,6 +44,25 @@ public final class UserEncryption {
             throw new RuntimeException("Failed User Field XML Encryption");
         }
     }
+
+    public static final String withCSVFormat(DomainModel inUser) {
+        try {
+            String header = "ID, NAME, DOB, SALARY, AGE \n";
+            String fieldValues = inUser.getId()
+                    + ", " + inUser.getName()
+                    + ", " + inUser.getDateOfBirth()
+                    + ", " + inUser.getSalary()
+                    + ", " + inUser.getCurrentAge()
+                    + "\n";
+            String csvUserString = header + fieldValues;
+            LOG.info(csvUserString);
+            return csvUserString;
+        } catch (Exception ex) {
+            LOG.severe("User CSV Encryption Failed : " + ex.getMessage());
+            throw new RuntimeException("Failed User Field CSV Encryption");
+        }
+    }
+
 
     public static final String encryptUserContents(String userData) {
         try {

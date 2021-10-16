@@ -1,6 +1,6 @@
 package org.dasarathi.sds.one.service;
 
-import org.dasarathi.sds.one.model.User;
+import org.dasarathi.sds.core.model.User;
 
 import java.util.List;
 
