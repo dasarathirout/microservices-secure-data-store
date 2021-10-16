@@ -1,8 +1,6 @@
-package org.dasarathi.sds.one.model;
+package org.dasarathi.sds.core.model;
 
-import org.dasarathi.sds.core.model.DomainModel;
-
-public class User  extends DomainModel {
+public class User extends DomainModel {
     private int id;
     private String name;
     private String dateOfBirth;
@@ -64,12 +62,12 @@ public class User  extends DomainModel {
 
     @Override
     public String toString() {
-        return "\nUser {" + "\n" +
-                "    ID     : " + id + "\n" +
-                "    NAME   : " + name + "\n" +
-                "    DOB    : " + dateOfBirth + "\n" +
-                "    SALARY : " + salary + "\n" +
-                "    AGE    : " + currentAge + "\n" +
-                "}\n";
+        return "USER { "
+                + "ID : " + id
+                + "NAME : " + name
+                + "DOB : " + dateOfBirth
+                + "SALARY : " + salary
+                + "AGE : " + currentAge
+                + " }";
     }
 }
