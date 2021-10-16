@@ -1,5 +1,6 @@
 package org.dasarathi.sds.one.controller;
 
+import org.dasarathi.sds.one.controller.error.HttpUserMessage;
 import org.dasarathi.sds.one.controller.helper.OneHelper;
 import org.dasarathi.sds.one.model.User;
 import org.dasarathi.sds.one.service.IUserService;
@@ -28,7 +29,7 @@ public class ServiceOneController {
             allUsers = userService.getAll();
         } catch (Exception ex) {
             LOG.severe("getAllUser() failed with " + ex.getMessage());
-            throw new HttpMessageNotReadableException("Unable to fetch all user.");
+            throw new HttpMessageNotReadableException("Unable to fetch all user.", new HttpUserMessage());
         }
         return allUsers;
     }
@@ -41,7 +42,7 @@ public class ServiceOneController {
             findUser = userService.search(userID);
         } catch (Exception ex) {
             LOG.severe("getAllUser() failed with " + ex.getMessage());
-            throw new HttpMessageNotReadableException("Unable to fetch user :" + userID);
+            throw new HttpMessageNotReadableException("Unable to fetch user :" + userID, new HttpUserMessage());
         }
         return findUser;
     }

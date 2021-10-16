@@ -1,14 +1,12 @@
 package org.dasarathi.sds.core.crypto;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 import java.util.logging.Logger;
 
 public final class ShiftCaesarCipher {
     // https://en.wikipedia.org/wiki/Caesar_cipher
     private static final Logger LOG = Logger.getLogger(ShiftCaesarCipher.class.getName());
-    private static String ASCII_FROM_32_TO_127 = "";
     private static final int SHIFT = 95;
+    private static String ASCII_FROM_32_TO_127 = "";
 
     static {
         for (int i = 32; i < 127; i++) {

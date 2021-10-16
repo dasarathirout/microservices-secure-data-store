@@ -22,20 +22,20 @@ public class ServiceOneExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     protected ResponseEntity<Object> handleHttpMessageNotReadable(
-                                       HttpMessageNotReadableException ex,
-                                       HttpHeaders headers,
-                                       HttpStatus status,
-                                       WebRequest request) {
+            HttpMessageNotReadableException ex,
+            HttpHeaders headers,
+            HttpStatus status,
+            WebRequest request) {
         String error = ex.getMessage() + " : Required Data Set Missing";
         ServiceOneError serviceOneError = new ServiceOneError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), error);
         return handleExceptionInternal(ex, serviceOneError, headers, serviceOneError.getHttpStatus(), request);
     }
 
     protected ResponseEntity<Object> handleHttpMessageNotWritable(
-                                        HttpMessageNotWritableException ex,
-                                        HttpHeaders headers,
-                                        HttpStatus status,
-                                        WebRequest request) {
+            HttpMessageNotWritableException ex,
+            HttpHeaders headers,
+            HttpStatus status,
+            WebRequest request) {
         String error = ex.getMessage() + " : Unable To Write Given Missing";
         ServiceOneError serviceOneError = new ServiceOneError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), error);
         return handleExceptionInternal(ex, serviceOneError, headers, status, request);

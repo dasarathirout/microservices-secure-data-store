@@ -18,10 +18,10 @@ repositories {
 
 dependencies {
     implementation project(':service-core')
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.data:spring-data-rest-hal-explorer'
-    implementation 'org.springframework.boot:spring-boot-devtools'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.5'
+    implementation 'org.springframework.data:spring-data-rest-hal-explorer:3.5.4'
+    implementation 'org.springframework.boot:spring-boot-devtools:2.5.5'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.5'
 }
 
 test {
