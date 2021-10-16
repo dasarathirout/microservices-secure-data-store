@@ -1,6 +1,8 @@
 package org.dasarathi.sds.one.model;
 
-public class User {
+import org.dasarathi.sds.core.model.DomainModel;
+
+public class User  extends DomainModel {
     private int id;
     private String name;
     private String dateOfBirth;
