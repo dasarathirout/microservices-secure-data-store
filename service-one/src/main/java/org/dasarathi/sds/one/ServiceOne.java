@@ -1,4 +1,5 @@
 package org.dasarathi.sds.one;
+import org.dasarathi.sds.core.crypto.RSAEncryption;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

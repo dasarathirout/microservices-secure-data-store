@@ -1,13 +1,8 @@
 package org.dasarathi.sds.core.crypto;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.security.*;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
@@ -54,14 +49,15 @@ public class KeyPairRSA {
         PrivateKey privateKey = null;
         try {
             byte[] privateKeyBytes = Files.readAllBytes(new File(PRIVATE_KEY_FILE).toPath());
-            LOG.info(new String(privateKeyBytes, StandardCharsets.UTF_8));
             KeyFactory privateKeyFactory = KeyFactory.getInstance("RSA");
             PKCS8EncodedKeySpec encodedPrivateKeySpec = new PKCS8EncodedKeySpec(privateKeyBytes);
             privateKey = privateKeyFactory.generatePrivate(encodedPrivateKeySpec);
+            LOG.info(" GENERATED PRIVATE_KEY_FILE: " + new File(PRIVATE_KEY_FILE).getAbsolutePath());
         } catch (Exception ex) {
             LOG.severe("Failed To Read Private Key File " + ex.getMessage());
             ex.printStackTrace();
         }
+        LOG.info(privateKey.toString());
         return privateKey;
     }
 
@@ -72,9 +68,11 @@ public class KeyPairRSA {
             KeyFactory pubKeyFactory = KeyFactory.getInstance("RSA");
             X509EncodedKeySpec encodedPublicKeySpec = new X509EncodedKeySpec(privateKeyBytes);
             publicKey = pubKeyFactory.generatePublic(encodedPublicKeySpec);
+            LOG.info(" GENERATED PUBLIC_KEY_FILE : " + new File(PUBLIC_KEY_FILE).getAbsolutePath());
         } catch (Exception ex) {
             LOG.severe("Failed To Read Public Key File " + ex.getMessage());
         }
+        LOG.info(publicKey.toString());
         return publicKey;
     }
 }
