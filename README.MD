@@ -20,3 +20,8 @@
 | CLONE REPO| `git clone https://github.com/dasarathirout/microservices-secure-data-store.git` |
 | GO TO REPO ROOT DIR | `cd microservices-secure-data-store` |
 | ALL SERVICES BUILD & RUN | `2RUN.BAT` Build Compile & Run All Services|
+
+#### Data Are Saved Under Respective Format :
+`microservices-secure-data-store\service-core\FDB\CSV`,
+`microservices-secure-data-store\service-core\FDB\JSON`,
+`microservices-secure-data-store\service-core\FDB\XML`,

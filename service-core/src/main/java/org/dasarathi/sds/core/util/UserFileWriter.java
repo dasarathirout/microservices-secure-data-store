@@ -1,6 +1,7 @@
 package org.dasarathi.sds.core.util;
 
 import org.dasarathi.sds.core.data.MemoryDB;
+import org.dasarathi.sds.core.encrypt.UserEncryption;
 import org.dasarathi.sds.core.model.User;
 
 import java.io.BufferedWriter;
@@ -28,14 +29,19 @@ public final class UserFileWriter {
     }
 
     public static void writeJSON(int ID, String jsonModelValue) {
-        LOG.info("Writing To " + new File(JSON_LOCATION + ID + CORE.JSON_EXT).getAbsolutePath());
+        File filePath = new File(JSON_LOCATION + ID + CORE.JSON_EXT);
+        LOG.info("Writing To " + filePath.getAbsolutePath());
+        LOG.info("Writing Contents " + jsonModelValue);
+        filePath.getParentFile().mkdirs();
         Path jsonFilePath = Paths.get(JSON_LOCATION + ID + CORE.JSON_EXT);
         try {
             BufferedWriter writer = Files.newBufferedWriter(jsonFilePath);
             writer.write(jsonModelValue);
-            LOG.info(ID + " JSON  File Written To " + new File(JSON_LOCATION + ID + CORE.JSON_EXT).getAbsolutePath());
+            writer.flush();
+            writer.close();
+            LOG.info(ID + " JSON  File Written To " + filePath.getAbsolutePath());
         } catch (Exception ex) {
-            LOG.severe("User ID "+ID + " JSON File Written Failed");
+            LOG.severe("User ID " + ID + " JSON File Written Failed");
             throw new RuntimeException();
         }
     }
@@ -44,7 +50,8 @@ public final class UserFileWriter {
 
     }
 
-    public static int writeSaveUpdate(int userID, String fileType, String dataValue) {
+    public static int writeSaveUpdate(int userID, String fileType, String dataEncryptedValue) {
+        String dataValue = UserEncryption.decryptUserContents(dataEncryptedValue);
         if (fileType.equalsIgnoreCase(CORE.CSV)) {
             writeCSV(userID, dataValue);
             return CORE.CSV_WRITE_SUCCESS;
