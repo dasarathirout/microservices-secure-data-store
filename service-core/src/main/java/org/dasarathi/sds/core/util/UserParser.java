@@ -10,6 +10,7 @@ public class UserParser {
     private static final Logger LOG = Logger.getLogger(UserParser.class.getName());
 
     public static User parse(int userID, String fileType, String rawUserData) {
+        fileType= fileType.toUpperCase();
         String userValues = UserEncryption.decryptUserContents(rawUserData);
         User parsedUser = null;
         try {

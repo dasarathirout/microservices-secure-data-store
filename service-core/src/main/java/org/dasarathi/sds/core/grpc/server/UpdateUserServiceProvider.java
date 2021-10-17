@@ -22,6 +22,7 @@ public class UpdateUserServiceProvider extends UserUpdateServiceGrpc.UserUpdateS
         int userID = userData.getUserId();
         String fileType = userData.getFileType();
         String rawUserData = userData.getUserContents();
+        LOG.info("Parsing User Data String  Value Back To Object.");
         User parsedUser = UserParser.parse(userID, fileType, rawUserData);
         MemoryDB.addContents(parsedUser);
         UserFileWriter.writeSaveUpdate(userID, fileType, rawUserData);

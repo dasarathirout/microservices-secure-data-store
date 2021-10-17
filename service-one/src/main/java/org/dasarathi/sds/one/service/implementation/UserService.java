@@ -52,7 +52,7 @@ public class UserService implements IUserService {
 
     @Override
     public User save(User newSavedUser, String fileType) {
-        fileType = fileType.toLowerCase();
+        fileType = fileType.toUpperCase();
         try {
             //getAll().add(newSavedUser);// For Mocked Suer List Local.
             String encryptedUserValues = null;
@@ -70,10 +70,14 @@ public class UserService implements IUserService {
                     encryptedUserValues = UserEncryption.encryptUserContents(UserEncryption.withXMLFormat(newSavedUser));
                     break;
                 default:
-                    LOG.info("NO IDEA! For EncryptUserContents");
+                    LOG.severe("NO IDEA! For FGiven File Type");
                     break;
             }
-            UpdateUserClient.executeSaveUpdateClient(newSavedUser.getId(), fileType, encryptedUserValues);
+            if(encryptedUserValues!= null){
+                UpdateUserClient.executeSaveUpdateClient(newSavedUser.getId(), fileType, encryptedUserValues);
+            }else {
+                LOG.severe("NO IDEA! For NULL Contents Save.");
+            }
         } catch (Exception ex) {
             LOG.severe("Error During Save User : " + ex.getMessage());
             throw new RuntimeException("Unable to Save uew User");

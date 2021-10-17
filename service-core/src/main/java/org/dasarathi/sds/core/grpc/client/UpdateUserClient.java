@@ -45,8 +45,8 @@ public class UpdateUserClient {
 
         UserUpdateResponse updateResponse = coreClientStub.updateDB(updateRequest);
         LOG.info(updateResponse.getResultContents());
-        // LOG.info("ShutDown Managed Channel");
-        // managedChannel.shutdown();
+        LOG.info("ShutDown Managed Channel");
+        managedChannel.shutdown();
         return CORE.GRPC_CLIENT_UPDATE;
     }
 }

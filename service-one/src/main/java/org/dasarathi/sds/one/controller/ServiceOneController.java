@@ -60,7 +60,7 @@ public class ServiceOneController {
                           @RequestParam(name = "fileType", required = false) String fileTypeByParameter,
                           @RequestBody User user) throws MissingServletRequestParameterException {
 
-        LOG.info("saveUser()" + user);
+        LOG.info("saveUser() => " + user);
         String fileType = OneHelper.checkFileTypeInRequest(fileTypeByHeader, fileTypeByParameter);
         userService.save(user, fileType);
         return userService.search(user.getId());

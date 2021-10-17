@@ -4,8 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.dasarathi.sds.core.encrypt.UserEncryption;
 import org.dasarathi.sds.core.model.User;
 
-public class DataConvertor {
+import java.util.logging.Logger;
 
+public class DataConvertor {
+    private static final Logger LOG = Logger.getLogger(DataConvertor.class.getName());
     private static final ObjectMapper mapper = new ObjectMapper();
 
     public static User fromCSVValue() {
@@ -13,12 +15,14 @@ public class DataConvertor {
     }
 
     public static User fromJSONValue(String inValue) {
-        UserEncryption.decryptUserContents(inValue);
+        ;
+        User model;
         try {
-            User model = mapper.readValue(UserEncryption.decryptUserContents(inValue), User.class);
+            model = mapper.readValue(UserEncryption.decryptUserContents(inValue), User.class);
             return model;
         } catch (Exception ex) {
-            throw new RuntimeException(ex);
+            LOG.severe("JSON Content Parsing Error : " + ex.getMessage());
+            throw new RuntimeException();
         }
     }
 

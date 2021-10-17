@@ -12,7 +12,6 @@ public class ServiceCore implements CommandLineRunner {
     private static final Logger LOG = Logger.getLogger(ServiceCore.class.getName());
 
     public static void main(String[] serviceCoreArrays) {
-        LOG.info("SPRING BOOT APPLICATION");
         SpringApplication.run(ServiceCore.class, serviceCoreArrays);
     }
 
@@ -21,6 +20,7 @@ public class ServiceCore implements CommandLineRunner {
         // Run To Generate SHA Public & Private Key File.
         // KeyPairRSA.generatePublicPrivateKeys();
         // Copy To KeyPairs/*.key Files To All Sub-Projects.
+        LOG.info("SERVICE-CORE-GRPC RUN");
         ServerRunners.startRunning();
     }
 }
