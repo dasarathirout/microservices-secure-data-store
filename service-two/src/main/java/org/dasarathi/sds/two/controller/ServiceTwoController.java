@@ -4,7 +4,6 @@ import org.dasarathi.sds.core.model.User;
 import org.dasarathi.sds.two.controller.error.HttpTwoMessage;
 import org.dasarathi.sds.two.service.ServicesTwoProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +18,7 @@ public class ServiceTwoController {
     ServicesTwoProvider servicesTwoProvider;
 
     @RequestMapping(method = RequestMethod.GET,
-            value = "/user/{userID}",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+            value = "/user/{userID}")
     private User getUser(@PathVariable("userID") int userID) {
         User findUser = new User();
         try {

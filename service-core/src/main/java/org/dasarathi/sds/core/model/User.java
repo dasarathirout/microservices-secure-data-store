@@ -63,11 +63,11 @@ public class User extends DomainModel {
     @Override
     public String toString() {
         return "USER { "
-                + "ID : " + id
-                + "NAME : " + name
-                + "DOB : " + dateOfBirth
-                + "SALARY : " + salary
+                + "ID : " + id+" , "
+                + "NAME : " + name+" , "
+                + "DOB : " + dateOfBirth+" , "
+                + "SALARY : " + salary+" , "
                 + "AGE : " + currentAge
-                + " }";
+                + " } ";
     }
 }
