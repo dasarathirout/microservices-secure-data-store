@@ -15,10 +15,6 @@ application {
     mainClass = 'org.dasarathi.sds.core.ServiceCore'
 }
 
-plugins {
-    id 'com.google.protobuf' version '0.8.17'
-}
-
 protobuf {
     protoc {
         artifact = "com.google.protobuf:protoc:3.17.3"
