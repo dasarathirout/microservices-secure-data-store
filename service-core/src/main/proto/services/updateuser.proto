@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package updateUser;
+
+option java_package = "com.proto.grpc.service";
+option java_multiple_files = true;
+
+message UpdateUserData {
+  int64 user_id = 1;
+  string user_contents = 2;
+}
+
+message UserUpdateRequest {
+  UpdateUserData user_data = 1;
+}
+
+message UserUpdateResponse {
+  string result_contents = 1;
+}
+
+service UserUpdateService {
+  rpc updateDB(UserUpdateRequest) returns (UserUpdateResponse) {};
+}
