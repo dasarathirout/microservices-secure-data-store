@@ -7,12 +7,14 @@ import com.proto.grpc.service.UserUpdateServiceGrpc;
 import io.grpc.stub.StreamObserver;
 import org.dasarathi.sds.core.data.MemoryDB;
 import org.dasarathi.sds.core.model.User;
+import org.dasarathi.sds.core.util.UserFileWriter;
 import org.dasarathi.sds.core.util.UserParser;
 
 import java.util.logging.Logger;
 
 public class ServerUpdateUser extends UserUpdateServiceGrpc.UserUpdateServiceImplBase {
     private static final Logger LOG = Logger.getLogger(ServerUpdateUser.class.getName());
+
     @Override
     public void updateDB(UserUpdateRequest request, StreamObserver<UserUpdateResponse> responseObserver) {
         LOG.info("grpc.server.updateDB()");
@@ -20,7 +22,8 @@ public class ServerUpdateUser extends UserUpdateServiceGrpc.UserUpdateServiceImp
         int userID = userData.getUserId();
         String fileType = userData.getFileType();
         String rawUserData = userData.getUserContents();
-        User parsedUser = UserParser.parse(userID,fileType,rawUserData);
+        User parsedUser = UserParser.parse(userID, fileType, rawUserData);
         MemoryDB.addContents(parsedUser);
+        UserFileWriter.writeSaveUpdate(userID, fileType, rawUserData);
     }
 }

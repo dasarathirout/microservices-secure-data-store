@@ -19,8 +19,11 @@ public final class UserFileWriter {
     private UserFileWriter() {
     }
 
-    public static void writeCSV(String csvModelValue) {
+    public static void writeCSV(int userID, String csvModelValue) {
 
+    }
+
+    public static void write(int ID, String jsonModelValue) {
 
     }
 
@@ -36,22 +39,22 @@ public final class UserFileWriter {
         }
     }
 
-    public static void writeXML(String xmlModelValue) {
+    public static void writeXML(int userID, String xmlModelValue) {
 
     }
 
-    public static int saveUpdate(String encryptedValue, String fileType) {
+    public static int writeSaveUpdate(int userID, String fileType, String dataValue) {
         if (fileType.equalsIgnoreCase(CORE.CSV)) {
+            writeCSV(userID, dataValue);
             return CORE.CSV_WRITE_SUCCESS;
         }
         if (fileType.equalsIgnoreCase(CORE.JSON)) {
-            User model = DataConvertor.fromJSONValue(encryptedValue);
-            MemoryDB.addContents(model);
+            writeJSON(userID, dataValue);
             return CORE.JSON_WRITE_SUCCESS;
         }
         if (fileType.equalsIgnoreCase(CORE.XML)) {
+            writeXML(userID, dataValue);
             return CORE.XML_WRITE_SUCCESS;
-
         }
         return CORE.STORE_WRITE_FAILED;
     }
