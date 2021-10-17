@@ -1,5 +1,6 @@
 package org.dasarathi.sds.core;
 
+import org.dasarathi.sds.core.crypto.KeyPairRSA;
 import org.dasarathi.sds.core.grpc.server.ServerRunners;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

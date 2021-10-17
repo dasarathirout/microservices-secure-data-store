@@ -43,8 +43,8 @@ public class ServiceOneController {
         User findUser;
         try {
             LOG.info("GET: /serviceOne/api/v1/user/" + userID);
-            // findUser = userService.search(userID); // LOCAL SET
-            findUser = clientTwoProxy.getUserByID(userID); // REMOTE CALL
+            findUser = userService.search(userID); // LOCAL SET
+            //findUser = clientTwoProxy.getUserByID(userID); // REMOTE CALL
             LOG.info(findUser.toString());
         } catch (Exception ex) {
             LOG.severe("searchUserByID() failed with " + ex.getMessage());
