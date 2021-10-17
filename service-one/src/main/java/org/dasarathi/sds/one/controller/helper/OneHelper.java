@@ -15,13 +15,14 @@ public class OneHelper {
         LOG.info("checkFileTypeInRequest( " + fileTypeInHeader + " , " + fileTypeInParameter + " )");
         boolean hasValidFileType = isFileType(fileTypeInHeader) || isFileType(fileTypeInParameter);
         if (!hasValidFileType) {
-            throw new MissingServletRequestParameterException("fileType", "CSV / XML");
+            throw new MissingServletRequestParameterException("fileType", " CSV / JSON / XML ");
         }
     }
 
     private static boolean isFileType(String value) {
         if (value != null && !value.trim().isEmpty()) {
             return value.equalsIgnoreCase(FILETYPE.CSV.toString()) ||
+                    value.equalsIgnoreCase(FILETYPE.JSON.toString())||
                     value.equalsIgnoreCase(FILETYPE.XML.toString());
         } else {
             return false;
