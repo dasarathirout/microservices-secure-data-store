@@ -26,6 +26,8 @@ dependencies {
     implementation 'io.grpc:grpc-netty-shaded:1.41.0'
     implementation 'com.google.protobuf:protobuf-java:3.18.1'
 
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.0.4'
+
     implementation 'org.springframework.boot:spring-boot-starter-web:2.5.5'
     implementation 'org.springframework.data:spring-data-rest-hal-explorer:3.5.4'
     implementation 'org.springframework.boot:spring-boot-devtools:2.5.5'

@@ -14,4 +14,7 @@ public interface CORE {
     int JSON_SUCCESS = 20;
     int XML_SUCCESS = 30;
     int STORE_FAILED = 99;
+
+    int GRPC_PORT = 50505;
+    String GRPC_HOSTNAME = "localhost";
 }
