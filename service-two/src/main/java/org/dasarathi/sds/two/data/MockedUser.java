@@ -2,22 +2,26 @@ package org.dasarathi.sds.two.data;
 
 import org.dasarathi.sds.core.model.User;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
 
 public class MockedUser {
-    private static final List<User> usersList = new ArrayList<>(16);
+    private static final int SIZE = 100;
+    private static final Random CRAZY = new Random();
 
-    static {
-        for (int i = 0; i < 10; i++) {
-            usersList.add(new User(200 + i, "NAME-" + i, "1987-06-" + (20 + i), 2000 + i * 1.5, 35 + i));
+    public static int update() {
+        for (int i = 0; i < SIZE; i++) {
+            User mocked = new User();
+            mocked.setId(CRAZY.nextInt(9999) + 1111);
+            mocked.setName("User Mocked " + i);
+            mocked.setDateOfBirth(CRAZY.nextInt(25) + 1999
+                    + "-" + (CRAZY.nextInt(6) + 6) +
+                    "-" + (CRAZY.nextInt(15) + 14));
+            mocked.setSalary(CRAZY.nextDouble() + 9999);
+            mocked.setCurrentAge(CRAZY.nextInt(50) + 20);
+            MemoryDB.addContents(mocked);
         }
-    }
-
-    private MockedUser() {
-    }
-
-    public static List<User> lists() {
-        return usersList;
+        User canSeeMe = new User(111, "Dr.Rout.", "11-11-1999", 9999.0, 30);
+        MemoryDB.addContents(canSeeMe);
+        return SIZE;
     }
 }

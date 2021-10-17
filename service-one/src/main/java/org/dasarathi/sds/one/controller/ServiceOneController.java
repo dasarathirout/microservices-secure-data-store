@@ -1,8 +1,9 @@
 package org.dasarathi.sds.one.controller;
 
+import org.dasarathi.sds.core.model.User;
+import org.dasarathi.sds.one.client.FeignClientTwoProxy;
 import org.dasarathi.sds.one.controller.error.HttpUserMessage;
 import org.dasarathi.sds.one.controller.helper.OneHelper;
-import org.dasarathi.sds.core.model.User;
 import org.dasarathi.sds.one.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -10,7 +11,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 
 @RestController
@@ -21,11 +22,14 @@ public class ServiceOneController {
     @Autowired
     IUserService userService;
 
+    @Autowired
+    FeignClientTwoProxy clientTwoProxy;
+
     @GetMapping("/users")
-    private List<User> getAllUser() {
-        List<User> allUsers = null;
+    private Set<User> getAllUser() {
+        Set<User> allUsers = null;
         try {
-            LOG.info("getAllUser()");
+            LOG.info("GET: /serviceOne/api/v1/users/{ALL}");
             allUsers = userService.getAll();
         } catch (Exception ex) {
             LOG.severe("getAllUser() failed with " + ex.getMessage());
@@ -38,10 +42,12 @@ public class ServiceOneController {
     private User getUser(@PathVariable("userID") int userID) {
         User findUser;
         try {
-            LOG.info("getUser()");
-            findUser = userService.search(userID);
+            LOG.info("GET: /serviceOne/api/v1/user/" + userID);
+            // findUser = userService.search(userID); // LOCAL SET
+            findUser = clientTwoProxy.getUserByID(userID); // REMOTE CALL
+            LOG.info(findUser.toString());
         } catch (Exception ex) {
-            LOG.severe("getAllUser() failed with " + ex.getMessage());
+            LOG.severe("searchUserByID() failed with " + ex.getMessage());
             throw new HttpMessageNotReadableException("Unable to fetch user :" + userID, new HttpUserMessage());
         }
         return findUser;

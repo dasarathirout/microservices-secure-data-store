@@ -4,12 +4,13 @@ import org.dasarathi.sds.core.model.User;
 
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class MemoryDB {
     private static final Logger LOG = Logger.getLogger(MemoryDB.class.getName());
-    private static final HashSet<User> hashSet = new LinkedHashSet();
+    private static final HashSet<User> hashSet = new LinkedHashSet<User>();
 
     private MemoryDB() {
     }
@@ -25,4 +26,7 @@ public class MemoryDB {
                 get(0);
     }
 
+    public static Set<User> getAllContents() {
+        return hashSet;
+    }
 }
