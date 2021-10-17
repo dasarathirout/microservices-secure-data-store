@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "b7e4b125-57af-4b29-9bbb-0af122232d54",
+		"name": "SB-SDS-MB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ServiceOne-AllUser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8181/serviceOne/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"serviceOne",
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ServiceOne-Update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idEx\": 1066,\r\n    \"name\": \"NAME-66\",\r\n    \"dateOfBirth\": \"1987-06-16\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8181/serviceOne/api/v1/user?fileType=XML",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"serviceOne",
+						"api",
+						"v1",
+						"user"
+					],
+					"query": [
+						{
+							"key": "fileType",
+							"value": "XML"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ServiceOneFindByID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8181/serviceOne/api/v1/user/111",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"serviceOne",
+						"api",
+						"v1",
+						"user",
+						"111"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ServiceTwo-SearchByID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8282/serviceTwo/api/v1/user/111",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8282",
+					"path": [
+						"serviceTwo",
+						"api",
+						"v1",
+						"user",
+						"111"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ServiceTwo-SearchAll",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8282/serviceTwo/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8282",
+					"path": [
+						"serviceTwo",
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
