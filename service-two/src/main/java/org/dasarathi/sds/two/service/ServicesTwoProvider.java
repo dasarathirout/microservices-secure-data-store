@@ -1,7 +1,7 @@
 package org.dasarathi.sds.two.service;
 
+import org.dasarathi.sds.core.data.MemoryDB;
 import org.dasarathi.sds.core.model.User;
-import org.dasarathi.sds.two.data.MemoryDB;
 import org.dasarathi.sds.two.data.MockedUser;
 import org.springframework.stereotype.Service;
 

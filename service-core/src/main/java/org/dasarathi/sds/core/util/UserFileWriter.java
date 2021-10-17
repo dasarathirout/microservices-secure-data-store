@@ -1,9 +1,7 @@
-package org.dasarathi.sds.two.grpc;
+package org.dasarathi.sds.core.util;
 
+import org.dasarathi.sds.core.data.MemoryDB;
 import org.dasarathi.sds.core.model.User;
-import org.dasarathi.sds.core.util.CORE;
-import org.dasarathi.sds.core.util.DataConvertor;
-import org.dasarathi.sds.two.data.MemoryDB;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -44,18 +42,18 @@ public final class UserFileWriter {
 
     public static int saveUpdate(String encryptedValue, String fileType) {
         if (fileType.equalsIgnoreCase(CORE.CSV)) {
-            return CORE.CSV_SUCCESS;
+            return CORE.CSV_WRITE_SUCCESS;
         }
         if (fileType.equalsIgnoreCase(CORE.JSON)) {
-            User model = DataConvertor.fromEncryptedJSONValue(encryptedValue);
+            User model = DataConvertor.fromJSONValue(encryptedValue);
             MemoryDB.addContents(model);
-            return CORE.JSON_SUCCESS;
+            return CORE.JSON_WRITE_SUCCESS;
         }
         if (fileType.equalsIgnoreCase(CORE.XML)) {
-            return CORE.XML_SUCCESS;
+            return CORE.XML_WRITE_SUCCESS;
 
         }
-        return CORE.STORE_FAILED;
+        return CORE.STORE_WRITE_FAILED;
     }
 
 }

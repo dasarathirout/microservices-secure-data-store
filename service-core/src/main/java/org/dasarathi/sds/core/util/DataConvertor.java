@@ -12,7 +12,7 @@ public class DataConvertor {
         return null;
     }
 
-    public static User fromEncryptedJSONValue(String inValue) {
+    public static User fromJSONValue(String inValue) {
         UserEncryption.decryptUserContents(inValue);
         try {
             User model = mapper.readValue(UserEncryption.decryptUserContents(inValue), User.class);

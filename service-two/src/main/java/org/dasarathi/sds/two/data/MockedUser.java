@@ -1,5 +1,6 @@
 package org.dasarathi.sds.two.data;
 
+import org.dasarathi.sds.core.data.MemoryDB;
 import org.dasarathi.sds.core.model.User;
 
 import java.util.Random;

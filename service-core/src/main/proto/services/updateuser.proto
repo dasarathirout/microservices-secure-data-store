@@ -6,8 +6,9 @@ option java_package = "com.proto.grpc.service";
 option java_multiple_files = true;
 
 message UpdateUserData {
-  int64 user_id = 1;
-  string user_contents = 2;
+  int32 user_id = 1;
+  string file_type = 2;
+  string user_contents = 3;
 }
 
 message UserUpdateRequest {
@@ -19,5 +20,6 @@ message UserUpdateResponse {
 }
 
 service UserUpdateService {
+  // Unary GRPC Call
   rpc updateDB(UserUpdateRequest) returns (UserUpdateResponse) {};
 }

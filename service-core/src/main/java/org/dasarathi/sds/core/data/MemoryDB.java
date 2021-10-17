@@ -1,4 +1,4 @@
-package org.dasarathi.sds.two.data;
+package org.dasarathi.sds.core.data;
 
 import org.dasarathi.sds.core.model.User;
 

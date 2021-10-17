@@ -1,8 +1,8 @@
 package org.dasarathi.sds.two.controller;
 
+import org.dasarathi.sds.core.data.MemoryDB;
 import org.dasarathi.sds.core.model.User;
 import org.dasarathi.sds.two.controller.error.HttpTwoMessage;
-import org.dasarathi.sds.two.data.MemoryDB;
 import org.dasarathi.sds.two.service.ServicesTwoProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.HttpMessageNotReadableException;

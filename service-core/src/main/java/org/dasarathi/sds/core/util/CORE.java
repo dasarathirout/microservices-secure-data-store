@@ -10,10 +10,15 @@ public interface CORE {
     String JSON_EXT = ".json";
     String XML_EXT = ".xml";
 
-    int CSV_SUCCESS = 10;
-    int JSON_SUCCESS = 20;
-    int XML_SUCCESS = 30;
-    int STORE_FAILED = 99;
+    int CSV_WRITE_SUCCESS = 100;
+    int JSON_WRITE_SUCCESS = 200;
+    int XML_WRITE_SUCCESS = 300;
+    int STORE_WRITE_FAILED = 400;
+
+    int CSV_PARSE_SUCCESS = 500;
+    int JSON_PARSE_SUCCESS = 600;
+    int XML_PARSE_SUCCESS = 700;
+    int STORE_PARSE_FAILED = 800;
 
     int GRPC_PORT = 50505;
     String GRPC_HOSTNAME = "localhost";
