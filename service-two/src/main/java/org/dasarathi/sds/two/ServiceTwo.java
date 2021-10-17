@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import java.util.logging.Logger;
 
 @SpringBootApplication
-@EnableFeignClients
+//@EnableFeignClients
 public class ServiceTwo implements CommandLineRunner {
     private static final Logger LOG = Logger.getLogger(ServiceTwo.class.getName());
 

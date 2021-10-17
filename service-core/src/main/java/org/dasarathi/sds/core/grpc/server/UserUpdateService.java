@@ -1,4 +1,4 @@
-package org.dasarathi.sds.core.server;
+package org.dasarathi.sds.core.grpc.server;
 
 import com.proto.core.greet.GreetRequest;
 import com.proto.core.greet.GreetResponse;
@@ -6,7 +6,7 @@ import com.proto.core.greet.GreetServiceGrpc;
 import com.proto.core.greet.Greeting;
 import io.grpc.stub.StreamObserver;
 
-public class MessageServiceCore extends GreetServiceGrpc.GreetServiceImplBase {
+public class UserUpdateService extends GreetServiceGrpc.GreetServiceImplBase {
     @Override
     public void greet(GreetRequest greetRequest, StreamObserver<GreetResponse> greetResponseObserver) {
 
@@ -16,7 +16,7 @@ public class MessageServiceCore extends GreetServiceGrpc.GreetServiceImplBase {
         String lastName = greeting.getLastName();
 
         // Create The Response
-        String greetResult = "Hi," + firstName + " " + lastName + " WelCome To GRPC Service !";
+        String greetResult = "Hi," + firstName + " " + lastName + " WelCome To GRPC User Update Service !";
 
         // Send The Response
         GreetResponse greetResponse = GreetResponse
