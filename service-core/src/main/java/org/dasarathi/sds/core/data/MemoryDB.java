@@ -20,10 +20,13 @@ public class MemoryDB {
     }
 
     public static User searchContents(int ID) {
-        return hashSet.stream().
-                filter(item -> item.getId() == ID).
-                collect(Collectors.toList()).
-                get(0);
+        User result = new User(0, "UNDEFINED", "NA", 0.0, 0);
+        for (User element : hashSet) {
+            if (element.getId() == ID) {
+                return element;
+            }
+        }
+        return result;
     }
 
     public static Set<User> getAllContents() {

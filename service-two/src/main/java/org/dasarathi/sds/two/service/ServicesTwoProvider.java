@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 
 @Service
-public class ServicesTwoProvider implements ServicesTwoI {
+public class ServicesTwoProvider {
     private static final Logger LOF = Logger.getLogger(ServicesTwoProvider.class.getName());
 
     static {

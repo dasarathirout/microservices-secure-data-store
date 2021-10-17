@@ -1,5 +1,6 @@
 package org.dasarathi.sds.one.service.implementation;
 
+import org.dasarathi.sds.core.data.MemoryDB;
 import org.dasarathi.sds.core.encrypt.UserEncryption;
 import org.dasarathi.sds.core.grpc.client.UpdateUserClient;
 import org.dasarathi.sds.core.model.User;
@@ -33,19 +34,17 @@ public class UserService implements IUserService {
 
     @Override
     public User search(int findBy) {
-        User result;
+        User result = null;
         try {
-            result = MockedUser.searchAllUser().
+            //result = MockedUser.searchAllUser().
+            result = MemoryDB.getAllContents().
                     stream().
                     filter(item -> item.getId() == findBy).
                     collect(Collectors.toList()).
                     get(0);
             doEncryptAndDecrypt(result);
         } catch (Exception ex) {
-            LOG.severe("Error At User search(int findBy = " + findBy + " ) => " + ex.getMessage());
-            throw new RuntimeException("Error search(int findBy = " + findBy + " )");
-        } finally {
-
+            LOG.severe("Error At User search(findBy = " + findBy + " ) => " + ex.getMessage());
         }
         return result;
     }
@@ -73,9 +72,9 @@ public class UserService implements IUserService {
                     LOG.severe("NO IDEA! For FGiven File Type");
                     break;
             }
-            if(encryptedUserValues!= null){
+            if (encryptedUserValues != null) {
                 UpdateUserClient.executeSaveUpdateClient(newSavedUser.getId(), fileType, encryptedUserValues);
-            }else {
+            } else {
                 LOG.severe("NO IDEA! For NULL Contents Save.");
             }
         } catch (Exception ex) {
