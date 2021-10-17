@@ -28,8 +28,8 @@ goto completed
 title ServiceCore
 echo '====================== service-core CLEAN=BUILD=RUN ============================'
 call gradlew service-core:clean
-call gradlew service-core:build
 call gradlew service-core:generateProto
+call gradlew service-core:build
 call gradlew service-core:run
 goto completed
 
