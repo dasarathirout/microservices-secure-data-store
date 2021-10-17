@@ -14,35 +14,29 @@ import org.dasarathi.sds.core.util.CORE;
 public class UpdateUserClient {
 
     private static final Logger LOG = Logger.getLogger(UpdateUserClient.class.getName());
-    private static UserUpdateServiceGrpc.UserUpdateServiceBlockingStub coreClientStub;
-    private static ManagedChannel managedChannel;
-
-    static {
-
-        managedChannel = ManagedChannelBuilder
-                .forAddress(CORE.GRPC_HOSTNAME, CORE.GRPC_PORT)
-                .usePlaintext()
-                .build();
-        coreClientStub = UserUpdateServiceGrpc.newBlockingStub(managedChannel);
-        LOG.info("Starting GRPC Client " + CORE.GRPC_HOSTNAME + " @ " + CORE.GRPC_PORT);
-
-    }
 
     public static int executeSaveUpdateClient(int userID, String fileType, String encryptedContents) {
         LOG.info("Save OR Update User => execute GRPC Client ");
         LOG.info(fileType + " | " + userID + " | " + encryptedContents);
+
+        ManagedChannel managedChannel = ManagedChannelBuilder
+                .forAddress(CORE.GRPC_HOSTNAME, CORE.GRPC_PORT)
+                .usePlaintext()
+                .build();
+        UserUpdateServiceGrpc.UserUpdateServiceBlockingStub coreClientStub = UserUpdateServiceGrpc.newBlockingStub(managedChannel);
+        LOG.info("Starting GRPC Client " + CORE.GRPC_HOSTNAME + " @ " + CORE.GRPC_PORT);
 
         UpdateUserData updateUserData = UpdateUserData.newBuilder()
                 .setUserId(userID)
                 .setFileType(fileType)
                 .setUserContents(encryptedContents)
                 .build();
-
+        LOG.info("Execute GRPC Client Builder ");
         UserUpdateRequest updateRequest = UserUpdateRequest
                 .newBuilder().
                 setUserData(updateUserData)
                 .build();
-
+        LOG.info("Execute GRPC Request Builder ");
         UserUpdateResponse updateResponse = coreClientStub.updateDB(updateRequest);
         LOG.info(updateResponse.getResultContents());
         LOG.info("ShutDown Managed Channel");

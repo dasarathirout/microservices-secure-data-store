@@ -28,14 +28,15 @@ public final class UserFileWriter {
     }
 
     public static void writeJSON(int ID, String jsonModelValue) {
-
+        LOG.info("Writing To " + new File(JSON_LOCATION + ID + CORE.JSON_EXT).getAbsolutePath());
         Path jsonFilePath = Paths.get(JSON_LOCATION + ID + CORE.JSON_EXT);
         try {
             BufferedWriter writer = Files.newBufferedWriter(jsonFilePath);
             writer.write(jsonModelValue);
-            LOG.info(ID + " CSV File Written To " + new File(JSON_LOCATION + ID + CORE.JSON_EXT).getAbsolutePath());
+            LOG.info(ID + " JSON  File Written To " + new File(JSON_LOCATION + ID + CORE.JSON_EXT).getAbsolutePath());
         } catch (Exception ex) {
-            throw new RuntimeException(ID + " CSV File Written Failed");
+            LOG.severe("User ID "+ID + " JSON File Written Failed");
+            throw new RuntimeException();
         }
     }
 

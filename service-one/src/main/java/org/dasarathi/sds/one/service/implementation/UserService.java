@@ -80,7 +80,6 @@ public class UserService implements IUserService {
             }
         } catch (Exception ex) {
             LOG.severe("Error During Save User : " + ex.getMessage());
-            throw new RuntimeException("Unable to Save uew User");
         }
         return newSavedUser;
     }

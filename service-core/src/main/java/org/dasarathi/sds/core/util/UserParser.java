@@ -12,6 +12,7 @@ public class UserParser {
     public static User parse(int userID, String fileType, String rawUserData) {
         fileType= fileType.toUpperCase();
         String userValues = UserEncryption.decryptUserContents(rawUserData);
+        LOG.info("After Decryption User Value => "+ userValues);
         User parsedUser = null;
         try {
             if (fileType.equalsIgnoreCase(CORE.CSV)) {

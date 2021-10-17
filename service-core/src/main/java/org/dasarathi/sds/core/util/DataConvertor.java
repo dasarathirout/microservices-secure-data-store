@@ -18,7 +18,9 @@ public class DataConvertor {
         ;
         User model;
         try {
-            model = mapper.readValue(UserEncryption.decryptUserContents(inValue), User.class);
+            LOG.info("Starting JSON String To Obj ...");
+            model = mapper.readValue(inValue, User.class);
+            LOG.info("After JSON Parsed Model : " + model);
             return model;
         } catch (Exception ex) {
             LOG.severe("JSON Content Parsing Error : " + ex.getMessage());

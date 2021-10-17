@@ -25,6 +25,7 @@ public class UpdateUserServiceProvider extends UserUpdateServiceGrpc.UserUpdateS
         LOG.info("Parsing User Data String  Value Back To Object.");
         User parsedUser = UserParser.parse(userID, fileType, rawUserData);
         MemoryDB.addContents(parsedUser);
+        LOG.info("Added new / updated user to Memory DB.");
         UserFileWriter.writeSaveUpdate(userID, fileType, rawUserData);
         UserUpdateResponse userUpdateResponse = UserUpdateResponse
                 .newBuilder()
