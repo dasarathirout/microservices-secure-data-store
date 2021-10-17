@@ -12,8 +12,8 @@ import org.dasarathi.sds.core.util.UserParser;
 
 import java.util.logging.Logger;
 
-public class ServerUpdateUser extends UserUpdateServiceGrpc.UserUpdateServiceImplBase {
-    private static final Logger LOG = Logger.getLogger(ServerUpdateUser.class.getName());
+public class UpdateUserServiceProvider extends UserUpdateServiceGrpc.UserUpdateServiceImplBase {
+    private static final Logger LOG = Logger.getLogger(UpdateUserServiceProvider.class.getName());
 
     @Override
     public void updateDB(UserUpdateRequest request, StreamObserver<UserUpdateResponse> responseObserver) {
@@ -25,5 +25,11 @@ public class ServerUpdateUser extends UserUpdateServiceGrpc.UserUpdateServiceImp
         User parsedUser = UserParser.parse(userID, fileType, rawUserData);
         MemoryDB.addContents(parsedUser);
         UserFileWriter.writeSaveUpdate(userID, fileType, rawUserData);
+        UserUpdateResponse userUpdateResponse = UserUpdateResponse
+                .newBuilder()
+                .setResultContents(parsedUser.toString())
+                .build();
+        responseObserver.onNext(userUpdateResponse);
+        responseObserver.onCompleted();
     }
 }

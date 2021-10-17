@@ -1,5 +1,6 @@
 package org.dasarathi.sds.core;
 
+import org.dasarathi.sds.core.grpc.server.ServerRunners;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,6 +21,6 @@ public class ServiceCore implements CommandLineRunner {
         // Run To Generate SHA Public & Private Key File.
         // KeyPairRSA.generatePublicPrivateKeys();
         // Copy To KeyPairs/*.key Files To All Sub-Projects.
-        // GRPCServer.startRunning();
+        ServerRunners.startRunning();
     }
 }
