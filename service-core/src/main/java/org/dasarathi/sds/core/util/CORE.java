@@ -2,6 +2,8 @@ package org.dasarathi.sds.core.util;
 
 public interface CORE {
 
+    String EMPTY= "";
+
     String CSV = "CSV";
     String JSON = "JSON";
     String XML = "XML";
@@ -22,4 +24,8 @@ public interface CORE {
 
     int GRPC_PORT = 50505;
     String GRPC_HOSTNAME = "localhost";
+
+    int GRPC_CLIENT_RUN = 900;
+    int GRPC_CLIENT_UPDATE = 1000;
+
 }

@@ -1,5 +1,7 @@
 package org.dasarathi.sds.one.service.implementation;
 
+import org.dasarathi.sds.core.encrypt.UserEncryption;
+import org.dasarathi.sds.core.grpc.client.UpdateUserClient;
 import org.dasarathi.sds.core.model.User;
 import org.dasarathi.sds.one.data.MockedUser;
 import org.dasarathi.sds.one.service.IUserService;
@@ -49,9 +51,29 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User save(User newSavedUser) {
+    public User save(User newSavedUser, String fileType) {
+        fileType = fileType.toLowerCase();
         try {
-            getAll().add(newSavedUser);
+            //getAll().add(newSavedUser);// For Mocked Suer List Local.
+            String encryptedUserValues = null;
+            switch (fileType) {
+                case "CSV":
+                    LOG.info("Save encryptUserContents with CSV Format");
+                    encryptedUserValues = UserEncryption.encryptUserContents(UserEncryption.withCSVFormat(newSavedUser));
+                    break;
+                case "JSON":
+                    LOG.info("Save encryptUserContents with JSON Format");
+                    encryptedUserValues = UserEncryption.encryptUserContents(UserEncryption.withJSONFormat(newSavedUser));
+                    break;
+                case "XML":
+                    LOG.info("Save encryptUserContents with XML Format");
+                    encryptedUserValues = UserEncryption.encryptUserContents(UserEncryption.withXMLFormat(newSavedUser));
+                    break;
+                default:
+                    LOG.info("NO IDEA! For EncryptUserContents");
+                    break;
+            }
+            UpdateUserClient.executeSaveUpdateClient(newSavedUser.getId(), fileType, encryptedUserValues);
         } catch (Exception ex) {
             LOG.severe("Error During Save User : " + ex.getMessage());
             throw new RuntimeException("Unable to Save uew User");

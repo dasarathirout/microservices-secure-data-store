@@ -11,7 +11,7 @@ public interface IUserService {
 
     public abstract User search(int userID);
 
-    public abstract User save(User user);
+    public abstract User save(User user, String fileType);
 
     public abstract User delete(int userID);
 

@@ -61,8 +61,8 @@ public class ServiceOneController {
                           @RequestBody User user) throws MissingServletRequestParameterException {
 
         LOG.info("saveUser()" + user);
-        OneHelper.checkFileTypeInRequest(fileTypeByHeader, fileTypeByParameter);
-        userService.save(user);
+        String fileType = OneHelper.checkFileTypeInRequest(fileTypeByHeader, fileTypeByParameter);
+        userService.save(user, fileType);
         return userService.search(user.getId());
     }
 
