@@ -27,3 +27,6 @@ https://github.com/dasarathirout/microservices-secure-data-store/blob/master/ser
 `microservices-secure-data-store\service-core\FDB\CSV`,
 `microservices-secure-data-store\service-core\FDB\JSON`,
 `microservices-secure-data-store\service-core\FDB\XML`,
+
+#### Postman API Test Collections `microservices-secure-data-store\utility`
+https://github.com/dasarathirout/microservices-secure-data-store/blob/master/utility/SB-SDS-MB.postman-api-collection.json
