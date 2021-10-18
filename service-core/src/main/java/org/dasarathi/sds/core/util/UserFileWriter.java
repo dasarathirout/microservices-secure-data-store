@@ -15,7 +15,7 @@ public final class UserFileWriter {
     private static final Logger LOG = Logger.getLogger(UserFileWriter.class.getName());
     private static final String CSV_LOCATION = "FDB" + File.separator + CORE.CSV + File.separator;
     private static final String JSON_LOCATION = "FDB" + File.separator + CORE.JSON + File.separator;
-    private static final String XML_LOCATION = "FDB" + File.separator + CORE.JSON + File.separator;
+    private static final String XML_LOCATION = "FDB" + File.separator + CORE.XML + File.separator;
 
     private UserFileWriter() {
     }
@@ -30,9 +30,9 @@ public final class UserFileWriter {
 
     public static void writeJSON(int ID, String jsonModelValue) {
         File filePath = new File(JSON_LOCATION + ID + CORE.JSON_EXT);
-        LOG.info("Writing To " + filePath.getAbsolutePath());
-        LOG.info("Writing Contents " + jsonModelValue);
+        LOG.info("Writing JSON To " + filePath.getAbsolutePath());
         filePath.getParentFile().mkdirs();
+        LOG.info("Writing Contents " + jsonModelValue);
         Path jsonFilePath = Paths.get(JSON_LOCATION + ID + CORE.JSON_EXT);
         try {
             BufferedWriter writer = Files.newBufferedWriter(jsonFilePath);
@@ -46,7 +46,22 @@ public final class UserFileWriter {
         }
     }
 
-    public static void writeXML(int userID, String xmlModelValue) {
+    public static void writeXML(int ID, String xmlModelValue) {
+        File filePath = new File(XML_LOCATION + ID + CORE.XML_EXT);
+        LOG.info("Writing XML To " + filePath.getAbsolutePath());
+        filePath.getParentFile().mkdirs();
+        LOG.info("Writing Contents " + xmlModelValue);
+        Path jsonFilePath = Paths.get(XML_LOCATION + ID + CORE.XML_EXT);
+        try {
+            BufferedWriter writer = Files.newBufferedWriter(jsonFilePath);
+            writer.write(xmlModelValue);
+            writer.flush();
+            writer.close();
+            LOG.info(ID + " XML  File Written To " + filePath.getAbsolutePath());
+        } catch (Exception ex) {
+            LOG.severe("User ID " + ID + " XML File Written Failed");
+            throw new RuntimeException();
+        }
 
     }
 
